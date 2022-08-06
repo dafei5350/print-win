@@ -1,4 +1,9 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { 
+  app, 
+  BrowserWindow, 
+  ipcMain,
+  Menu,
+} from 'electron'
 import '../renderer/store'
 
 /**
@@ -15,9 +20,7 @@ const winURL = process.env.NODE_ENV === 'development'
   : `file://${__dirname}/index.html`
 
 function createWindow () {
-  /**
-   * Initial window options
-   */
+  Menu.setApplicationMenu(null)
   mainWindow = new BrowserWindow({
     height: 563,
     useContentSize: true,
