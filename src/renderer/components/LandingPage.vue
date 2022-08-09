@@ -2,7 +2,6 @@
   <div id="wrapper">
     <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
     <main>
-
       <div class="right-side">
         <div class="doc">
           <button class="alt" @click="handlePrinter ()">获取打印机</button>
@@ -12,15 +11,20 @@
         </div>
       </div>
     </main>
+    
   </div>
 </template>
 
 <script>
   import SystemInformation from './LandingPage/SystemInformation'
   import { ipcRenderer } from "electron"
+  import { Header } from './Header';
   export default {
     name: 'landing-page',
-    components: { SystemInformation },
+    components: { 
+      SystemInformation,
+      Header,
+     },
     data() {
       return {
         printList: [],
@@ -45,15 +49,18 @@
   @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
   body { 
+    padding: 0 !important;
+    margin: 0 !important;
     font-family: 'Source Sans Pro', sans-serif; 
-    background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );
-    }
+    
+  }
 
   #wrapper {
-    
-    height: 100vh;
-    padding: 60px 80px;
     width: 100vw;
+    height: 100vh;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0);
+    background-image: linear-gradient(160deg,  #80D0C7 0%, #0093E9 100%);
   }
 
   #logo {
@@ -80,39 +87,5 @@
     margin-bottom: 10px;
   }
 
-  .title {
-    color: #2c3e50;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 6px;
-  }
 
-  .title.alt {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-
-  .doc p {
-    color: black;
-    margin-bottom: 10px;
-  }
-
-  .doc button {
-    font-size: .8em;
-    cursor: pointer;
-    outline: none;
-    padding: 0.75em 2em;
-    border-radius: 2em;
-    display: inline-block;
-    color: #fff;
-    background-color: #4fc08d;
-    transition: all 0.15s ease;
-    box-sizing: border-box;
-    border: 1px solid #4fc08d;
-  }
-
-  .doc button.alt {
-    color: #42b983;
-    background-color: transparent;
-  }
 </style>

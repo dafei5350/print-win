@@ -22,9 +22,12 @@ const winURL = process.env.NODE_ENV === 'development'
 function createWindow () {
   Menu.setApplicationMenu(null)
   mainWindow = new BrowserWindow({
-    height: 563,
+    width: 1000,
+    height: 600,
+    transparent: true,
+    backgroundColor: '#00000000',
+    frame: false,
     useContentSize: true,
-    width: 1000
   })
 
   mainWindow.loadURL(winURL)
@@ -52,6 +55,23 @@ ipcMain.on('getPrinterList', (event) => {
   const list = mainWindow.webContents.getPrinters()
   mainWindow.webContents.send('getPrinterList', list)
 })
+//登录窗口最小化
+ipcMain.on('min',function(){
+  mainWindow.minimize();
+})
+//登录窗口最大化
+ipcMain.on('max',function(){
+  if(mainWindow.isMaximized()){
+      // mainWindow.restore(); 
+      mainWindow.unmaximize();
+  }else{
+      mainWindow.maximize(); 
+  }
+})
+ipcMain.on('close',function(){
+  mainWindow.close();
+})
+
 
 /**
  * Auto Updater
